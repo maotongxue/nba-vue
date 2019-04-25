@@ -36,7 +36,8 @@
                 :to="{
                     path: 'nbaStatus',
                     query: {
-                        match_id: item.id
+                        match_id: item.id,
+                        match_date: date
                     }
                 }">
                 比赛详情

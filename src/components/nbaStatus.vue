@@ -55,6 +55,7 @@ export default {
     return {
       matchInfo: [],
       match_id: '',
+      match_date: '',
       matchMaxSid: '',
       matchMinSid: '',
       matchText: []
@@ -62,27 +63,7 @@ export default {
   },
   methods: {
     getNBAStatus() {
-      let myDate = new Date()
-      let year = myDate.getFullYear()
-      let month = myDate.getMonth()+1
-      let date = myDate.getDate()
-      if(month<10){
-        if(date<10){
-          var today = year+'-0'+month+'-0'+date
-        }
-        else{
-          var today = year+'-0'+month+'-'+date
-        }
-      }
-      else{
-        if(date<10){
-          var today = year+'-'+month+'-0'+date
-        }
-        else{
-          var today = year+'-'+month+'-'+date
-        }
-      }
-      this.axios.get('http://bifen4pc2.qiumibao.com/json/'+today+'/'+this.match_id+'.htm')
+      this.axios.get('http://bifen4pc2.qiumibao.com/json/'+this.match_date+'/'+this.match_id+'.htm')
       .then((response) => {
         this.matchInfo = response.data
       })
@@ -113,6 +94,7 @@ export default {
   created() {
     this.axios.defaults.withCredentials = false
     this.match_id = this.$route.query.match_id
+    this.match_date = this.$route.query.match_date
     this.getNBAStatus()
     this.getMatchMaxSid()
     setInterval(this.getMatchMaxSid,3000)
