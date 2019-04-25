@@ -7,7 +7,7 @@ import nbaStatus from '@/components/nbaStatus'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history', //去掉url里的#
+  // mode: 'history', //去掉url里的#，但是在build之后页面刷新会遇到404，慎用
   routes: [
     {
       path: '/',
